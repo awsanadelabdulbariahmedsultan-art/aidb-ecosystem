@@ -13,6 +13,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Sync Main index.html to www
+        run: |
+          mkdir -p www
+          cp index.html www/index.html
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -30,9 +35,10 @@ jobs:
           npx cap add android
           npx cap sync android
 
-      - name: Grant Camera & Internet Permissions
+      - name: Inject Hardware & Security Permissions
         run: |
-          sed -i 's/<uses-permission android:name="android.permission.INTERNET" \/>/<uses-permission android:name="android.permission.INTERNET" \/>\n    <uses-permission android:name="android.permission.CAMERA" \/>/g' android/app/src/main/AndroidManifest.xml
+          PERMISSIONS='<uses-permission android:name="android.permission.INTERNET" \/>\n    <uses-permission android:name="android.permission.CAMERA" \/>\n    <uses-permission android:name="android.permission.USE_BIOMETRIC" \/>\n    <uses-permission android:name="android.permission.USE_FINGERPRINT" \/>\n    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" \/>\n    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" \/>\n    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" \/>\n    <uses-permission android:name="android.permission.VIBRATE" \/>'
+          sed -i "s|<uses-permission android:name=\"android.permission.INTERNET\" \/>|$PERMISSIONS|g" android/app/src/main/AndroidManifest.xml
 
       - name: Build Debug APK
         run: |
