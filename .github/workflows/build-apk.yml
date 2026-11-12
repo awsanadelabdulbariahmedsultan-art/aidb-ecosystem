@@ -35,6 +35,18 @@ jobs:
           npx cap add android
           npx cap sync android
 
+      - name: Convert & Generate App Icon and Splash from Logo
+        run: |
+          sudo apt-get update && sudo apt-get install -y imagemagick
+          if [ -f "assets/logo.jpeg" ]; then
+            convert assets/logo.jpeg assets/logo.png
+          elif [ -f "assets/logo.jpg" ]; then
+            convert assets/logo.jpg assets/logo.png
+          fi
+          if [ -f "assets/logo.png" ]; then
+            npx capacitor-assets generate --android --iconBackgroundColor '#ffffff' --splashBackgroundColor '#ffffff'
+          fi
+
       - name: Inject Hardware & Security Permissions
         run: |
           PERMISSIONS='<uses-permission android:name="android.permission.INTERNET" \/>\n    <uses-permission android:name="android.permission.CAMERA" \/>\n    <uses-permission android:name="android.permission.USE_BIOMETRIC" \/>\n    <uses-permission android:name="android.permission.USE_FINGERPRINT" \/>\n    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" \/>\n    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" \/>\n    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" \/>\n    <uses-permission android:name="android.permission.VIBRATE" \/>'
