@@ -1,0 +1,8 @@
+{
+  "appId": "lol.aidb.sovereign",
+  "appName": "AIDB Bank",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  }
+}
