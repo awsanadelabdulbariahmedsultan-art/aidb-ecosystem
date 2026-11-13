@@ -1,7 +1,7 @@
 {
   "name": "aidb-sovereign-app",
-  "version": "1.2.0",
-  "description": "AIDB Sovereign Digital Banking & eKYC Mobile App",
+  "version": "1.3.0",
+  "description": "AIDB Sovereign Digital Banking, eKYC & OTA Auto-Update Mobile App",
   "author": "Eng. Awsan Adel Abdulbari Ahmed Sultan <awsan@aidb.lol> (https://www.linkedin.com/in/awsan-adel-abdulbari-ahmed-sultan-8aa5a1a9)",
   "license": "PROPRIETARY",
   "dependencies": {
@@ -10,6 +10,7 @@
     "@capacitor/geolocation": "^6.0.0",
     "@capacitor/local-notifications": "^6.0.0",
     "@capacitor/push-notifications": "^6.0.0",
+    "@capawesome/capacitor-app-update": "^6.0.0",
     "capacitor-native-biometric": "^4.2.2"
   },
   "devDependencies": {
