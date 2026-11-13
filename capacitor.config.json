@@ -3,6 +3,13 @@
   "appName": "AIDB Bank",
   "webDir": "www",
   "server": {
-    "androidScheme": "https"
+    "url": "https://aidb.lol",
+    "cleartext": false,
+    "androidScheme": "https",
+    "allowNavigation": [
+      "aidb.lol",
+      "*.aidb.lol",
+      "*.sumsub.com"
+    ]
   }
 }
